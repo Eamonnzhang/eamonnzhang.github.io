@@ -1,0 +1,1008 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="uXRW_Is5FXlldun__scXVM5hpRDglZ7GEVRhylQeo_4" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS,布局," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="译自CSS-TRICKS上的一篇文章：Centering in CSS: A Complete Guide。以下为译文：
+CSS的居中是众多CSS难点的代表。为啥用CSS居中这么难呢？但是我认为这个问题其实并没有那么难啦，就是有很多种不同的方式可以达到居中的目的，这取决于不同的情景，很难说用哪一种方式去实现居中。所以就让我们做一个决策树，希望能使这个问题简单一点吧~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS居中：完全指南（译）">
+<meta property="og:url" content="http://github.com/Eamonnzhang/2016/01/28/CSS居中：完全指南（译）/index.html">
+<meta property="og:site_name" content="Eamonn">
+<meta property="og:description" content="译自CSS-TRICKS上的一篇文章：Centering in CSS: A Complete Guide。以下为译文：
+CSS的居中是众多CSS难点的代表。为啥用CSS居中这么难呢？但是我认为这个问题其实并没有那么难啦，就是有很多种不同的方式可以达到居中的目的，这取决于不同的情景，很难说用哪一种方式去实现居中。所以就让我们做一个决策树，希望能使这个问题简单一点吧~">
+<meta property="og:updated_time" content="2016-12-20T15:09:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS居中：完全指南（译）">
+<meta name="twitter:description" content="译自CSS-TRICKS上的一篇文章：Centering in CSS: A Complete Guide。以下为译文：
+CSS的居中是众多CSS难点的代表。为啥用CSS居中这么难呢？但是我认为这个问题其实并没有那么难啦，就是有很多种不同的方式可以达到居中的目的，这取决于不同的情景，很难说用哪一种方式去实现居中。所以就让我们做一个决策树，希望能使这个问题简单一点吧~">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 11137323,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://github.com/Eamonnzhang/2016/01/28/CSS居中：完全指南（译）/"/>
+
+  <title> CSS居中：完全指南（译） | Eamonn </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?7fb99537f12a5a1389d38c3e2c4610bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Eamonn</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">这里的鸡汤被我喝了</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS居中：完全指南（译）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-28T15:31:32+08:00" content="2016-01-28">
+              2016-01-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学着/" itemprop="url" rel="index">
+                    <span itemprop="name">学着</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/28/CSS居中：完全指南（译）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/28/CSS居中：完全指南（译）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/01/28/CSS居中：完全指南（译）/" class="leancloud_visitors" data-flag-title="CSS居中：完全指南（译）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>译自CSS-TRICKS上的一篇文章：<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="external">Centering in CSS: A Complete Guide</a>。<br>以下为译文：</p>
+<p>CSS的居中是众多CSS难点的代表。为啥用CSS居中这么难呢？但是我认为这个问题其实并没有那么难啦，就是有很多种不同的方式可以达到居中的目的，这取决于不同的情景，很难说用哪一种方式去实现居中。<br>所以就让我们做一个决策树，希望能使这个问题简单一点吧~<br><a id="more"></a></p>
+<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><h3 id="行内或者具有行内元素性质的元素（比如文字或者链接）？"><a href="#行内或者具有行内元素性质的元素（比如文字或者链接）？" class="headerlink" title="行内或者具有行内元素性质的元素（比如文字或者链接）？"></a>行内或者具有行内元素性质的元素（比如文字或者链接）？</h3><p>让一个父元素为块级元素的行内元素水平居中，可以：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.center-children</span> &#123;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="单个块级元素？"><a href="#单个块级元素？" class="headerlink" title="单个块级元素？"></a>单个块级元素？</h3><p>你可以设置块级元素的 <code>margin-left</code> 和 <code>margin-right</code> 为 <code>auto</code> 来使它水平居中（这个块级元素是被设置了一个 <code>width</code> 属性了，否则它会占满宽度，这时候已经不需要居中了），有一种速记的写法：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.center-me</span> &#123;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="多个块级元素？"><a href="#多个块级元素？" class="headerlink" title="多个块级元素？"></a>多个块级元素？</h3><p>如果有两个或者更多的块级元素需要在被一行里水平居中，那么你最好设置他们不同的 <code>display</code> 属性来达到效果了。这里有两个例子：一个是设置为 <code>inline-block</code>， 一个是设置为 <code>flexbox</code> 。<br>HTML:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;main <span class="built_in">class</span>=<span class="string">"inline-block-center"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span>&gt;</div><div class="line">    I'm an element <span class="keyword">that</span> <span class="keyword">is</span> block-like <span class="keyword">with</span> <span class="keyword">my</span> siblings <span class="keyword">and</span> we're centered <span class="keyword">in</span> a row.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span>&gt;</div><div class="line">    I'm an element <span class="keyword">that</span> <span class="keyword">is</span> block-like <span class="keyword">with</span> <span class="keyword">my</span> siblings <span class="keyword">and</span> we're centered <span class="keyword">in</span> a row. I have more content <span class="keyword">in</span> <span class="keyword">me</span> than <span class="keyword">my</span> siblings do.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span>&gt;</div><div class="line">    I'm an element <span class="keyword">that</span> <span class="keyword">is</span> block-like <span class="keyword">with</span> <span class="keyword">my</span> siblings <span class="keyword">and</span> we're centered <span class="keyword">in</span> a row.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/main&gt;</div><div class="line"></div><div class="line">&lt;main <span class="built_in">class</span>=<span class="string">"flex-center"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span>&gt;</div><div class="line">    I'm an element <span class="keyword">that</span> <span class="keyword">is</span> block-like <span class="keyword">with</span> <span class="keyword">my</span> siblings <span class="keyword">and</span> we're centered <span class="keyword">in</span> a row.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span>&gt;</div><div class="line">    I'm an element <span class="keyword">that</span> <span class="keyword">is</span> block-like <span class="keyword">with</span> <span class="keyword">my</span> siblings <span class="keyword">and</span> we're centered <span class="keyword">in</span> a row. I have more content <span class="keyword">in</span> <span class="keyword">me</span> than <span class="keyword">my</span> siblings do.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span>&gt;</div><div class="line">    I'm an element <span class="keyword">that</span> <span class="keyword">is</span> block-like <span class="keyword">with</span> <span class="keyword">my</span> siblings <span class="keyword">and</span> we're centered <span class="keyword">in</span> a row.</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/main&gt;</div></pre></td></tr></table></figure></p>
+<p>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.inline-block-center</span> &#123;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.inline-block-center</span> <span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">text-align</span>: left;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.flex-center</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>除非你是想让多个块级元素堆积在彼此的顶部（一列堆积啦），那么 <code>margin: auto</code> 还是依然适用的：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">main</span> <span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">background</span>: black;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">  <span class="attribute">color</span>: white;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">15px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">5px</span> auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><p>在CSS里，垂直居中是有那么一点点麻烦了。</p>
+<h3 id="行内或者具有行内元素性质的元素（比如文字或者链接）？-1"><a href="#行内或者具有行内元素性质的元素（比如文字或者链接）？-1" class="headerlink" title="行内或者具有行内元素性质的元素（比如文字或者链接）？"></a>行内或者具有行内元素性质的元素（比如文字或者链接）？</h3><h4 id="单行？"><a href="#单行？" class="headerlink" title="单行？"></a>单行？</h4><p>有时候行内元素或者文字显示为垂直居中，仅仅是因为它们的上下内边距相等：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.link</span> &#123;</div><div class="line">  <span class="attribute">padding-top</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">padding-bottom</span>: <span class="number">30px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果 padding 出于某些原因不能用，并且你要使一些不换行的文字居中，这里有一个技巧，就是设置文字的 <code>line-height</code> 和 <code>height</code>  的值相等。<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.center-text-trick</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">white-space</span>: nowrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="多行？"><a href="#多行？" class="headerlink" title="多行？"></a>多行？</h4><p>上边距和下边距相等也能让多行文字达到垂直居中的效果，但是如果这种方法不奏效的话，可能需要设置文字所在的元素为一个 <code>table cell</code>，不管它直接是 <code>table</code> 还是你用CSS使这个元素表现的像一个 <code>table cell</code>，<code>vertical-align</code> 属性可以处理这种情况，它与我们通常所做的在行上处理元素对齐的方式不同：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">table</span> &#123;</div><div class="line">  <span class="attribute">background</span>: white;</div><div class="line">  <span class="attribute">width</span>: <span class="number">240px</span>;</div><div class="line">  <span class="attribute">border-collapse</span>: separate;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">250px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">table</span> <span class="selector-tag">td</span> &#123;</div><div class="line">  <span class="attribute">background</span>: black;</div><div class="line">  <span class="attribute">color</span>: white;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid white;</div><div class="line">  <span class="comment">/* default is vertical-align: middle; */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.center-table</span> &#123;</div><div class="line">  <span class="attribute">display</span>: table;</div><div class="line">  <span class="attribute">height</span>: <span class="number">250px</span>;</div><div class="line">  <span class="attribute">background</span>: white;</div><div class="line">  <span class="attribute">width</span>: <span class="number">240px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.center-table</span> <span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">display</span>: table-cell;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">background</span>: black;</div><div class="line">  <span class="attribute">color</span>: white;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid white;</div><div class="line">  <span class="attribute">vertical-align</span>: middle;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.flex-center-vertically</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果没法用类table方式，可能你需要用 <code>flexbox</code> ？单个的 <code>flex</code> 子元素可以非常简单的被一个 <code>flex</code> 父元素垂直居中：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-center-vertically</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>请记住这个方法仅仅适用于父容器具有一个固定的额高度（px，%，等等），这也是为什么容器有一个高度。</p>
+<p>如果上面的方法都不能用，你可以试试 ”虚元素“ 技术：其中一个完整高度的伪元素放置在容器内，并与文本垂直对齐。<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.ghost-center</span> &#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.ghost-center</span><span class="selector-pseudo">::before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">" "</span>;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">1%</span>;</div><div class="line">  <span class="attribute">vertical-align</span>: middle;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.ghost-center</span> <span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">display</span>: inline-block;</div><div class="line">  <span class="attribute">vertical-align</span>: middle;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="块级元素？"><a href="#块级元素？" class="headerlink" title="块级元素？"></a>块级元素？</h3><h4 id="知道元素的高度？"><a href="#知道元素的高度？" class="headerlink" title="知道元素的高度？"></a>知道元素的高度？</h4><p>不知道元素的高度是比较常见的，有很多原因：如果宽度改变，文本回流会改变高度；文字样式改变会改变高度；文字数量改变会改变高度；一个固定比例的元素，比如图片，当重置尺寸的时候也会改变高度，等等。</p>
+<p>但如果你知道高度，你可以这样垂直居中元素：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.parent</span> &#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.child</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">margin-top</span>: -<span class="number">50px</span>; <span class="comment">/* account for padding and border if not using box-sizing: border-box; */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="元素高度未知？"><a href="#元素高度未知？" class="headerlink" title="元素高度未知？"></a>元素高度未知？</h4><p>可以通过 <code>transform</code> 来达到目的：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="selector-class">.parent</span> &#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.child</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="能用-flexbox-吗？"><a href="#能用-flexbox-吗？" class="headerlink" title="能用 flexbox 吗？"></a>能用 flexbox 吗？</h4><p>毫无疑问，用 <code>flexbox</code> 简单太多了：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.parent</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="垂直水平居中"><a href="#垂直水平居中" class="headerlink" title="垂直水平居中"></a>垂直水平居中</h2><p>你可以通过不同的方式结合上面的技术来得到一个完美的居中水平垂直居中元素。但是我发现，这些方法通常都属于以下三种阵营：</p>
+<h3 id="元素有固定的宽和高？"><a href="#元素有固定的宽和高？" class="headerlink" title="元素有固定的宽和高？"></a>元素有固定的宽和高？</h3><p>用负的 <code>margin</code> 值使其等于宽度和高度的一半，当你设置了它的绝对位置为 50% 之后，就会得到一个很棒的跨浏览器支持的居中：<br>CSS;<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.parent</span> &#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.child</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</div><div class="line"></div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</div><div class="line"></div><div class="line">  <span class="attribute">margin</span>: -<span class="number">70px</span> <span class="number">0</span> <span class="number">0</span> -<span class="number">170px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="元素的宽和高未知？"><a href="#元素的宽和高未知？" class="headerlink" title="元素的宽和高未知？"></a>元素的宽和高未知？</h3><p>如果你不知道元素的高度和宽度，你可以用 <code>transform</code> 属性，用 <code>translate</code> 设置 -50%（它以元素当前的宽和高为基础）来居中：<br>CSS：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.parent</span> &#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.child</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, -50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="能用-flexbox-吗？-1"><a href="#能用-flexbox-吗？-1" class="headerlink" title="能用 flexbox 吗？"></a>能用 flexbox 吗？</h3><p>为了让元素在 <code>flexbox</code> 两个方向都居中，你需要两个居中属性：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.parent</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">  <span class="attribute">align-items</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>你完全可以用CSS来居中元素，lol</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+            <a href="/tags/布局/" rel="tag">#布局</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/22/如何在博客里插入emoji表情/" rel="next" title="在Hexo博客里插入Emoji表情">
+                <i class="fa fa-chevron-left"></i> 在Hexo博客里插入Emoji表情
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/29/科学上网/" rel="prev" title="科学上网">
+                科学上网 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/01/28/CSS居中：完全指南（译）/"
+     data-title="CSS居中：完全指南（译）"
+     data-content=""
+     data-url="http://github.com/Eamonnzhang/2016/01/28/CSS居中：完全指南（译）/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/28/CSS居中：完全指南（译）/"
+           data-title="CSS居中：完全指南（译）" data-url="http://github.com/Eamonnzhang/2016/01/28/CSS居中：完全指南（译）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/us.jpg"
+               alt="EamonnZhang" />
+          <p class="site-author-name" itemprop="name">EamonnZhang</p>
+          <p class="site-description motion-element" itemprop="description">这里的鸡汤也被我喝了，:-)</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Eamonnzhang" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/zhang-eamonn" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/EamonnZhang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1909986563" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#水平居中"><span class="nav-number">1.</span> <span class="nav-text">水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#行内或者具有行内元素性质的元素（比如文字或者链接）？"><span class="nav-number">1.1.</span> <span class="nav-text">行内或者具有行内元素性质的元素（比如文字或者链接）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单个块级元素？"><span class="nav-number">1.2.</span> <span class="nav-text">单个块级元素？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个块级元素？"><span class="nav-number">1.3.</span> <span class="nav-text">多个块级元素？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垂直居中"><span class="nav-number">2.</span> <span class="nav-text">垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#行内或者具有行内元素性质的元素（比如文字或者链接）？-1"><span class="nav-number">2.1.</span> <span class="nav-text">行内或者具有行内元素性质的元素（比如文字或者链接）？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单行？"><span class="nav-number">2.1.1.</span> <span class="nav-text">单行？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多行？"><span class="nav-number">2.1.2.</span> <span class="nav-text">多行？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块级元素？"><span class="nav-number">2.2.</span> <span class="nav-text">块级元素？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#知道元素的高度？"><span class="nav-number">2.2.1.</span> <span class="nav-text">知道元素的高度？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元素高度未知？"><span class="nav-number">2.2.2.</span> <span class="nav-text">元素高度未知？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#能用-flexbox-吗？"><span class="nav-number">2.2.3.</span> <span class="nav-text">能用 flexbox 吗？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垂直水平居中"><span class="nav-number">3.</span> <span class="nav-text">垂直水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素有固定的宽和高？"><span class="nav-number">3.1.</span> <span class="nav-text">元素有固定的宽和高？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素的宽和高未知？"><span class="nav-number">3.2.</span> <span class="nav-text">元素的宽和高未知？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#能用-flexbox-吗？-1"><span class="nav-number">3.3.</span> <span class="nav-text">能用 flexbox 吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EamonnZhang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"eamonn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("FLhMRcqV8l2oTMu8uF33Jayd-gzGzoHsz", "BV0rnwW5eQFKjdoHvjkpQT8M");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
