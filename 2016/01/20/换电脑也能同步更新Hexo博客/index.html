@@ -350,9 +350,9 @@
 <li>把必要的东西放在一个新的<strong>Repo</strong>上</li>
 </ol>
 <p>我选择了第四种方式，可以自己找一个托管网站，最好是能免费创建私有项目的那一种。把上图中红框的内容<code>push</code>上去，<em>这里注意删除根目录以及主题文件夹下的git文件，否则在<code>push</code>过程中会报错</em>。<br>接下来，在每次<code>hexo d</code>之后，在<code>git push</code>一下就可以做到实时更新源代码了。<br>如果换了电脑，只需要把源代码克隆下来，然后安装所必要环境，就能愉快的更新的博客了。</p>
-<h4 id="Tips："><a href="#Tips：" class="headerlink" title="Tips："></a>Tips：</h4><p>如果怕忘记执行那条命令，不妨把每次都需要输入的命令都放进bat文件里，写完博客直接执行bat文件。<br><code>preview.bat</code>用来预览：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g </div><div class="line">hexo s -p 5000</div></pre></td></tr></table></figure></p>
-<p><code>hexo.bat</code> 用来发布以及同步源代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div><div class="line">git add --all</div><div class="line">git commit</div><div class="line">git push</div></pre></td></tr></table></figure></p>
-<p><code>clean.bat</code>用来修复NexT主题的bug（首页只显示一篇文章）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo g</div><div class="line">hexo g</div><div class="line">hexo d</div><div class="line">git add --all</div><div class="line">git commit</div><div class="line">git push</div></pre></td></tr></table></figure></p>
+<h4 id="Tips："><a href="#Tips：" class="headerlink" title="Tips："></a>Tips：</h4><p>如果怕忘记执行那条命令，不妨把每次都需要输入的命令都放进bat文件里，写完博客直接执行bat文件。<br><code>preview.bat</code>用来预览：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g </span><br><span class="line">hexo s -p 5000</span><br></pre></td></tr></table></figure></p>
+<p><code>hexo.bat</code> 用来发布以及同步源代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br><span class="line">git add --all</span><br><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p><code>clean.bat</code>用来修复NexT主题的bug（首页只显示一篇文章）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br><span class="line">git add --all</span><br><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -488,7 +488,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
