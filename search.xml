@@ -22,6 +22,20 @@
 <h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><h3 id="学习浮躁"><a href="#学习浮躁" class="headerlink" title="学习浮躁"></a>学习浮躁</h3><p>在工作过程中，虽然学的也快，但是会发现自己以往的学习方法还是太过浮躁。<br>很多基础的概念虽然知道，但是很难用自己的话向别人解释清楚，或者自己彻底理解。<br>所以现在一有空，就会重拾那些基础，沉下心来慢慢看，然后用自己的话写成博客记录下来，<br>首先得把自己能讲明白了，才能给别人讲明白。</p>
 <h3 id="碎片化时间"><a href="#碎片化时间" class="headerlink" title="碎片化时间"></a>碎片化时间</h3><p>由于工作负载不均衡，有时候一停下来，会不知道做什么，经常随便浏览看看各大技术论坛，来消磨自己的时间。<br>其实自己吸收的很少，所以这种事情应该少做。<br>目前我的做法是这样的：把自己准备写的博客文章标题记录下来，哪一天有空闲时间，就会去查询相关资料，<br>完成一篇博客，充分利用这些碎片化时间，而且完成一篇博客，会有些许成就感，正向反馈自己。（感谢小爝的Live指导）</p>
 <h2 id="2017加油↖-ω-↗"><a href="#2017加油↖-ω-↗" class="headerlink" title="2017加油↖(^ω^)↗"></a>2017加油↖(^ω^)↗</h2>]]></content>
+      
+        <categories>
+            
+            <category> 活着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -57,6 +71,20 @@
 <h2 id="有趣的闭包图解"><a href="#有趣的闭包图解" class="headerlink" title="有趣的闭包图解"></a>有趣的闭包图解</h2><p><img src="http://ww2.sinaimg.cn/large/71d81503jw1fazohxws3fj20go09dabi.jpg" alt=""><br>最后用阮一峰大神的文章问题结尾：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</div><div class="line"><span class="keyword">var</span> object = &#123;</div><div class="line">　　<span class="attr">name</span> : <span class="string">"My Object"</span>,</div><div class="line">　　<span class="attr">getNameFunc</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　<span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">　　　　&#125;;</div><div class="line">　　&#125;</div><div class="line">&#125;;</div><div class="line">alert(object.getNameFunc()()); <span class="comment">//'The Window'</span></div></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</div><div class="line"><span class="keyword">var</span> object = &#123;</div><div class="line">　　<span class="attr">name</span> : <span class="string">"My Object"</span>,</div><div class="line">　　<span class="attr">getNameFunc</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　<span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">　　　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　<span class="keyword">return</span> that.name;</div><div class="line">　　　　&#125;;</div><div class="line">　　&#125;</div><div class="line">&#125;;</div><div class="line">alert(object.getNameFunc()()); <span class="comment">//'My Object</span></div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 学着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -93,6 +121,20 @@
 <p>所以通过JS的内置对象new出来的类型，诸如<code>new String</code>、<code>new Number</code>他们还是一个引用类型，<code>typeof</code> 返回的结果依然是 <code>“object”</code>而不是其对应的基本类型<br>只有通过直接量赋值的变量，诸如<code>var a = 1</code>,<code>var s = &#39;abc&#39;</code><br><code>typeof</code> 才会返回其基本类型 </p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN</a><br><a href="https://blog.oyanglul.us/javascript/understand-prototype.html#orgheadline1" target="_blank" rel="external">Jichao Ouyang的个人博客</a><br><a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰老师的博客</a></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 学着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -110,6 +152,22 @@
 <p>感谢作者！</p>
 <h3 id="担忧"><a href="#担忧" class="headerlink" title="担忧"></a>担忧</h3><p>如果 GFW 从 IP 层封锁，hosts 也将无法使用。事实上，现在GFW 也开始这么做了。<br>毕竟我们的心愿是 世界和平….. </p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 折腾着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 翻墙 </tag>
+            
+            <tag> hosts </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -139,6 +197,22 @@
 <h3 id="能用-flexbox-吗？-1"><a href="#能用-flexbox-吗？-1" class="headerlink" title="能用 flexbox 吗？"></a>能用 flexbox 吗？</h3><p>为了让元素在 <code>flexbox</code> 两个方向都居中，你需要两个居中属性：<br>CSS:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.parent</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">  <span class="attribute">align-items</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>你完全可以用CSS来居中元素，lol</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 学着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> CSS </tag>
+            
+            <tag> 布局 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -169,6 +243,22 @@
 <p>我想 hexo-tags-emojis 作者的 nofancybox 类也是想实现这个效果，但不知为何失效。<br>我在 NexT 主题下提了一个 <a href="https://github.com/iissnan/hexo-theme-next/issues/618">Issue</a>，实现能够在一行文字之间插入图片也是可以的，这样也不仅仅局限于只能插入 Emoji 表情了。</p>
 <p>就酱，生命不息，折腾不止。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 折腾着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Emoji </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -178,6 +268,20 @@
 <a id="more"></a>
 <p>今天早上起床，看到上面这个场景：整个人是为之一振的。<br>后来出门准备拿楼道里被我放了好几天的伞，然后发现伞不见了= =。<br>算了，出门感受大自然吧。<br>不管怎么说，这是来武汉后的第一场雪，也是来武汉丢的第一把伞。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 活着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -201,6 +305,20 @@
 <p><code>hexo.bat</code> 用来发布以及同步源代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">hexo d</div><div class="line">git add --all</div><div class="line">git commit</div><div class="line">git push</div></pre></td></tr></table></figure></p>
 <p><code>clean.bat</code>用来修复NexT主题的bug（首页只显示一篇文章）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo g</div><div class="line">hexo g</div><div class="line">hexo d</div><div class="line">git add --all</div><div class="line">git commit</div><div class="line">git push</div></pre></td></tr></table></figure></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 学着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -218,6 +336,20 @@
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>其实搭建博客是一个很有意思的过程，上面的每一个步骤都能学到很多东西。但是写博客就不一定啦，哈哈。</p>
 <p>关于用Hexo搭建博客有一个比较头疼的问题就是，如果换了电脑怎么办？Hexo不像Jekyll，直接把源码放在Repo上，换了电脑pull下来就可以了。Hexo是把自己的生成内容<code>push</code>上去了，那怎么样可以在那台电脑上都可以获取到Hexo的源码文件夹呢？下一篇会简单介绍一下我自己的解决方式。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 学着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+        
     </entry>
     
   
