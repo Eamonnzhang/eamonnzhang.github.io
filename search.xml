@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title><![CDATA[此博客停止更新！！]]></title>
+      <url>http://github.com/Eamonnzhang/2019/02/27/%E6%AD%A4%E5%8D%9A%E5%AE%A2%E5%81%9C%E6%AD%A2%E6%9B%B4%E6%96%B0/</url>
+      <content type="html"><![CDATA[<h3 id="以后会在GitHub的Issues中更新博客"><a href="#以后会在GitHub的Issues中更新博客" class="headerlink" title="以后会在GitHub的Issues中更新博客"></a>以后会在GitHub的Issues中更新博客</h3><p>此博客地址暂停更新，<strong><a href="https://github.com/Eamonnzhang/blog/issues">&gt;&gt;&gt;Issues(点我查看最新文章)&lt;&lt;&lt;</a></strong> </p>
+]]></content>
+      
+        <categories>
+            
+            <category> 折腾着 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[一道面试题引发的思考]]></title>
+      <url>http://github.com/Eamonnzhang/2016/12/26/%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/</url>
+      <content type="html"><![CDATA[<h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p>在不用jQuery的情况下，ul中点击任意 <code>li</code>，弹出它在该ul中的位置，即第几个 <code>li</code>？<br>这道题目大致有两种解法：<br><a id="more"></a></p>
+<h2 id="第一种解法思考："><a href="#第一种解法思考：" class="headerlink" title="第一种解法思考："></a>第一种解法思考：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> liArr = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,length = liArr.length; i&lt;length; i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">        liArr[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                alert(i+<span class="number">1</span>)   </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line"> <span class="comment">/**liArr[i].index = i;</span></span><br><span class="line"><span class="comment">  liArr[i].onclick = function()&#123;</span></span><br><span class="line"><span class="comment">    alert(this.index)   </span></span><br><span class="line"><span class="comment">  &#125;**/</span></span><br><span class="line"> <span class="comment">/**liArr[i].onclick = (function(i)&#123;</span></span><br><span class="line"><span class="comment">    return function()&#123;</span></span><br><span class="line"><span class="comment">        alert(i+1)</span></span><br><span class="line"><span class="comment"> &#125;**/</span></span><br><span class="line"> &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种解法主要应用了闭包相关的知识，给每个 <code>li</code>都绑定了一个事件。<br>如果不用闭包，你会发现，每次点击弹出的都是 <code>i</code> 的最后一个值。<br>为什么？因为onclick绑定的函数是异步事件，不会立即执行，会等到点击之后才会触发。<br>用户点击 <code>li</code>，会执行函数体alert(i)，<code>i</code> 在哪儿？JS会顺着作用域链查找，找到 <code>i</code> 之后发现已经被for循环了一遍了，值已经改变为了最后一个值。所以想要解决这个问题，ES5里可以通过把onclick事件通过闭包（关于闭包可以查看我博客中的JavaScript闭包一文）的形式赋值或者给每个 <code>li</code>绑定一个index，点击的时候找到这个index即可；ES6可以直接用<code>let</code> 关键字来指定 <code>i</code> 值。</p>
+<h2 id="第二种解法思考："><a href="#第二种解法思考：" class="headerlink" title="第二种解法思考："></a>第二种解法思考：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> liArr = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,length = liArr.length; i&lt;length; i++)&#123;</span><br><span class="line">  liArr[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert([].indexOf.call(<span class="keyword">this</span>.parentNode.children,<span class="keyword">this</span>))   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这个问题换一种思路看其实挺简单的， <code>ul</code>相当于一个数组， <code>li</code>是这个数组里的每一个元素，其实点击 <code>li</code>的时候，只要找打<br> <code>li</code>在这个数组中的位置即可。<br>但是它还可以改进，我们完全可以通过事件委托机制来委托每一个 <code>li</code>的点击事件，而不用给每个 <code>li</code>都循环绑定一遍事件。这里还用到了关于类数组对象如何使用原生数组方法的用法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>).addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> target = e.target;</span><br><span class="line">      <span class="keyword">var</span> index=[].indexOf.call(target.parentNode.children,target);</span><br><span class="line">      alert(index+<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="题后记录："><a href="#题后记录：" class="headerlink" title="题后记录："></a>题后记录：</h2><p>其实上面这些解答，有些是自己思考得出的，有些是通过搜索引擎搜来的，在搜索的过程中，发现了很多之前模棱两可的概念，特此梳理一下，于是就写了这个文章。这边文章也将作为以后我记录容易混淆概念的地方。</p>
+<h3 id="Event-target-vs-Event-srcElement-vs-Event-currentTarget-vs-Event-relatedTarget"><a href="#Event-target-vs-Event-srcElement-vs-Event-currentTarget-vs-Event-relatedTarget" class="headerlink" title="Event.target vs Event.srcElement vs Event.currentTarget vs Event.relatedTarget"></a>Event.target vs Event.srcElement vs Event.currentTarget vs Event.relatedTarget</h3><h4 id="Event-target"><a href="#Event-target" class="headerlink" title="Event.target:"></a>Event.target:</h4><p>指向触发事件的对象。该属性经常在事件代理中用到，通俗点说，你在ul上绑定了一个点击事件，因为事件冒泡机制，点击 <code>ul</code> 中的某个 <code>li</code>会触发 <code>ul</code> 的点击事件，而target就是你点击的这个 <code>li</code> 元素，因为点击了 <code>li</code> 才触发了这个事件， <code>li</code> 触发了该事件。</p>
+<h4 id="Event-srcElement"><a href="#Event-srcElement" class="headerlink" title="Event.srcElement"></a>Event.srcElement</h4><p>IE6-8不支持 <code>target</code> 属性，只能通过调用 <code>srcElement</code> 来调用</p>
+<h4 id="Event-currentTarget"><a href="#Event-currentTarget" class="headerlink" title="Event.currentTarget"></a>Event.currentTarget</h4><p>指向绑定该事件的对象，还拿上面那个例子来说，<code>currentTarget</code> 总是指向绑定该事件的元素，所以无论你点击哪个 <code>li</code>，<code>currentTarget</code> 都指向 <code>ul</code></p>
+<h4 id="Event-relatedTarget"><a href="#Event-relatedTarget" class="headerlink" title="Event.relatedTarget"></a>Event.relatedTarget</h4><p>这个属性顾名思义——“相关目标”，也就说只有某些事件会关系到一些次要元素时，该属性才会有值，其他的事件该属性都返回 <code>null</code>。<br>那么哪些事件会关系到次要元素呢？<br>请看下方的表：</p>
+<p><img src="http://ww2.sinaimg.cn/large/71d81503jw1fb4bqqcg2vj20hn0cqq6u.jpg" alt=""></p>
+<p>这些事件都有一个共同的特性，他们总是成对的，in/out enter/leave out/over enter/exit。</p>
+<h3 id="Node-vs-Element"><a href="#Node-vs-Element" class="headerlink" title="Node vs Element"></a>Node vs Element</h3><p>在事件对象里面我们会看到诸如，<code>childNodes&amp;&amp;children</code>，<code>parentNode&amp;&amp;parentElement</code> 这些看着很类似的属性，其实只要搞懂了 <code>Node</code> 和 <code>Element</code> 的区别，就能明白他们之间的区别。</p>
+<h4 id="Node："><a href="#Node：" class="headerlink" title="Node："></a>Node：</h4><p><code>Node</code> 是一个接口，有很多种类型的DOM元素继承于它，它是节点。<br>像 <code>Document</code>、<code>Element</code> 等等都集成自 <code>Node</code>。<br>可以根据 <code>Node.nodeType</code> 来判断该对象属于哪一种 <code>Node</code>。<br><img src="http://ww1.sinaimg.cn/large/71d81503jw1fb4bsqfphfj20ar0imwgv.jpg" alt=""></p>
+<h4 id="Element："><a href="#Element：" class="headerlink" title="Element："></a>Element：</h4><p><code>Element</code> 是继承自 <code>Node</code> 接口的一个对象，是元素，根据上图可知，当一个 <code>Node</code> 的 <code>nodeType</code> 为1是，它是一个 <code>Element</code>。<br>理解了Node和Element的区别，你就会明白 <code>childNodes</code> 和 <code>children</code> 的区别以及 <code>parentNode</code> 和 <code>parentElement</code> 的区别。<br><code>children</code> 集合里的元素全是 <code>Element</code>，而 <code>childNodes</code> 集合里的元素都是 <code>Node</code>，不一定都是 <code>Element</code>。<br>同理，<code>parentNode</code> 和 <code>parentElement</code> 也是同样的道理。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学着 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[我的2016]]></title>
       <url>http://github.com/Eamonnzhang/2016/12/24/%E6%88%91%E7%9A%842016/</url>
       <content type="html"><![CDATA[<span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="http://ww2.sinaimg.cn/large/71d81503jw1fb1xk56z3gj21kw0w0wgl.jpg" class="full-image"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>

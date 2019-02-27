@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="uXRW_Is5FXlldun__scXVM5hpRDglZ7GEVRhylQeo_4" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目：在不用jQuery的情况下，ul中点击任意 li，弹出它在该ul中的位置，即第几个 li？这道题目大致有两种解法：">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一道面试题引发的思考">
+<meta property="og:url" content="http://github.com/Eamonnzhang/2016/12/26/一道面试题引发的思考/index.html">
+<meta property="og:site_name" content="Eamonn">
+<meta property="og:description" content="题目：在不用jQuery的情况下，ul中点击任意 li，弹出它在该ul中的位置，即第几个 li？这道题目大致有两种解法：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/71d81503jw1fb4bqqcg2vj20hn0cqq6u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/71d81503jw1fb4bsqfphfj20ar0imwgv.jpg">
+<meta property="og:updated_time" content="2019-02-27T10:04:36.779Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一道面试题引发的思考">
+<meta name="twitter:description" content="题目：在不用jQuery的情况下，ul中点击任意 li，弹出它在该ul中的位置，即第几个 li？这道题目大致有两种解法：">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/71d81503jw1fb4bqqcg2vj20hn0cqq6u.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.com/Eamonnzhang/2016/12/26/一道面试题引发的思考/"/>
+
+
+
+
+
+  <title>一道面试题引发的思考 | Eamonn</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7fb99537f12a5a1389d38c3e2c4610bc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eamonn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">这里的鸡汤被我喝了</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/Eamonnzhang/2016/12/26/一道面试题引发的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EamonnZhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eamonn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一道面试题引发的思考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-26T17:27:10+08:00">
+                2016-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学着/" itemprop="url" rel="index">
+                    <span itemprop="name">学着</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p>在不用jQuery的情况下，ul中点击任意 <code>li</code>，弹出它在该ul中的位置，即第几个 <code>li</code>？<br>这道题目大致有两种解法：<br><a id="more"></a></p>
+<h2 id="第一种解法思考："><a href="#第一种解法思考：" class="headerlink" title="第一种解法思考："></a>第一种解法思考：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> liArr = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,length = liArr.length; i&lt;length; i++)&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">        liArr[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                alert(i+<span class="number">1</span>)   </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line"> <span class="comment">/**liArr[i].index = i;</span></span><br><span class="line"><span class="comment">  liArr[i].onclick = function()&#123;</span></span><br><span class="line"><span class="comment">    alert(this.index)   </span></span><br><span class="line"><span class="comment">  &#125;**/</span></span><br><span class="line"> <span class="comment">/**liArr[i].onclick = (function(i)&#123;</span></span><br><span class="line"><span class="comment">    return function()&#123;</span></span><br><span class="line"><span class="comment">        alert(i+1)</span></span><br><span class="line"><span class="comment"> &#125;**/</span></span><br><span class="line"> &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种解法主要应用了闭包相关的知识，给每个 <code>li</code>都绑定了一个事件。<br>如果不用闭包，你会发现，每次点击弹出的都是 <code>i</code> 的最后一个值。<br>为什么？因为onclick绑定的函数是异步事件，不会立即执行，会等到点击之后才会触发。<br>用户点击 <code>li</code>，会执行函数体alert(i)，<code>i</code> 在哪儿？JS会顺着作用域链查找，找到 <code>i</code> 之后发现已经被for循环了一遍了，值已经改变为了最后一个值。所以想要解决这个问题，ES5里可以通过把onclick事件通过闭包（关于闭包可以查看我博客中的JavaScript闭包一文）的形式赋值或者给每个 <code>li</code>绑定一个index，点击的时候找到这个index即可；ES6可以直接用<code>let</code> 关键字来指定 <code>i</code> 值。</p>
+<h2 id="第二种解法思考："><a href="#第二种解法思考：" class="headerlink" title="第二种解法思考："></a>第二种解法思考：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> liArr = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,length = liArr.length; i&lt;length; i++)&#123;</span><br><span class="line">  liArr[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert([].indexOf.call(<span class="keyword">this</span>.parentNode.children,<span class="keyword">this</span>))   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这个问题换一种思路看其实挺简单的， <code>ul</code>相当于一个数组， <code>li</code>是这个数组里的每一个元素，其实点击 <code>li</code>的时候，只要找打<br> <code>li</code>在这个数组中的位置即可。<br>但是它还可以改进，我们完全可以通过事件委托机制来委托每一个 <code>li</code>的点击事件，而不用给每个 <code>li</code>都循环绑定一遍事件。这里还用到了关于类数组对象如何使用原生数组方法的用法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>).addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> target = e.target;</span><br><span class="line">      <span class="keyword">var</span> index=[].indexOf.call(target.parentNode.children,target);</span><br><span class="line">      alert(index+<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="题后记录："><a href="#题后记录：" class="headerlink" title="题后记录："></a>题后记录：</h2><p>其实上面这些解答，有些是自己思考得出的，有些是通过搜索引擎搜来的，在搜索的过程中，发现了很多之前模棱两可的概念，特此梳理一下，于是就写了这个文章。这边文章也将作为以后我记录容易混淆概念的地方。</p>
+<h3 id="Event-target-vs-Event-srcElement-vs-Event-currentTarget-vs-Event-relatedTarget"><a href="#Event-target-vs-Event-srcElement-vs-Event-currentTarget-vs-Event-relatedTarget" class="headerlink" title="Event.target vs Event.srcElement vs Event.currentTarget vs Event.relatedTarget"></a>Event.target vs Event.srcElement vs Event.currentTarget vs Event.relatedTarget</h3><h4 id="Event-target"><a href="#Event-target" class="headerlink" title="Event.target:"></a>Event.target:</h4><p>指向触发事件的对象。该属性经常在事件代理中用到，通俗点说，你在ul上绑定了一个点击事件，因为事件冒泡机制，点击 <code>ul</code> 中的某个 <code>li</code>会触发 <code>ul</code> 的点击事件，而target就是你点击的这个 <code>li</code> 元素，因为点击了 <code>li</code> 才触发了这个事件， <code>li</code> 触发了该事件。</p>
+<h4 id="Event-srcElement"><a href="#Event-srcElement" class="headerlink" title="Event.srcElement"></a>Event.srcElement</h4><p>IE6-8不支持 <code>target</code> 属性，只能通过调用 <code>srcElement</code> 来调用</p>
+<h4 id="Event-currentTarget"><a href="#Event-currentTarget" class="headerlink" title="Event.currentTarget"></a>Event.currentTarget</h4><p>指向绑定该事件的对象，还拿上面那个例子来说，<code>currentTarget</code> 总是指向绑定该事件的元素，所以无论你点击哪个 <code>li</code>，<code>currentTarget</code> 都指向 <code>ul</code></p>
+<h4 id="Event-relatedTarget"><a href="#Event-relatedTarget" class="headerlink" title="Event.relatedTarget"></a>Event.relatedTarget</h4><p>这个属性顾名思义——“相关目标”，也就说只有某些事件会关系到一些次要元素时，该属性才会有值，其他的事件该属性都返回 <code>null</code>。<br>那么哪些事件会关系到次要元素呢？<br>请看下方的表：</p>
+<p><img src="http://ww2.sinaimg.cn/large/71d81503jw1fb4bqqcg2vj20hn0cqq6u.jpg" alt=""></p>
+<p>这些事件都有一个共同的特性，他们总是成对的，in/out enter/leave out/over enter/exit。</p>
+<h3 id="Node-vs-Element"><a href="#Node-vs-Element" class="headerlink" title="Node vs Element"></a>Node vs Element</h3><p>在事件对象里面我们会看到诸如，<code>childNodes&amp;&amp;children</code>，<code>parentNode&amp;&amp;parentElement</code> 这些看着很类似的属性，其实只要搞懂了 <code>Node</code> 和 <code>Element</code> 的区别，就能明白他们之间的区别。</p>
+<h4 id="Node："><a href="#Node：" class="headerlink" title="Node："></a>Node：</h4><p><code>Node</code> 是一个接口，有很多种类型的DOM元素继承于它，它是节点。<br>像 <code>Document</code>、<code>Element</code> 等等都集成自 <code>Node</code>。<br>可以根据 <code>Node.nodeType</code> 来判断该对象属于哪一种 <code>Node</code>。<br><img src="http://ww1.sinaimg.cn/large/71d81503jw1fb4bsqfphfj20ar0imwgv.jpg" alt=""></p>
+<h4 id="Element："><a href="#Element：" class="headerlink" title="Element："></a>Element：</h4><p><code>Element</code> 是继承自 <code>Node</code> 接口的一个对象，是元素，根据上图可知，当一个 <code>Node</code> 的 <code>nodeType</code> 为1是，它是一个 <code>Element</code>。<br>理解了Node和Element的区别，你就会明白 <code>childNodes</code> 和 <code>children</code> 的区别以及 <code>parentNode</code> 和 <code>parentElement</code> 的区别。<br><code>children</code> 集合里的元素全是 <code>Element</code>，而 <code>childNodes</code> 集合里的元素都是 <code>Node</code>，不一定都是 <code>Element</code>。<br>同理，<code>parentNode</code> 和 <code>parentElement</code> 也是同样的道理。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/24/我的2016/" rel="next" title="我的2016">
+                <i class="fa fa-chevron-left"></i> 我的2016
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/27/此博客停止更新/" rel="prev" title="此博客停止更新！！">
+                此博客停止更新！！ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjQ4Mi8xMzAxNw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">EamonnZhang</p>
+              <p class="site-description motion-element" itemprop="description">这里的鸡汤也被我喝了，:-)</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一种解法思考："><span class="nav-number">2.</span> <span class="nav-text">第一种解法思考：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二种解法思考："><span class="nav-number">3.</span> <span class="nav-text">第二种解法思考：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题后记录："><span class="nav-number">4.</span> <span class="nav-text">题后记录：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-target-vs-Event-srcElement-vs-Event-currentTarget-vs-Event-relatedTarget"><span class="nav-number">4.1.</span> <span class="nav-text">Event.target vs Event.srcElement vs Event.currentTarget vs Event.relatedTarget</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-target"><span class="nav-number">4.1.1.</span> <span class="nav-text">Event.target:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-srcElement"><span class="nav-number">4.1.2.</span> <span class="nav-text">Event.srcElement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-currentTarget"><span class="nav-number">4.1.3.</span> <span class="nav-text">Event.currentTarget</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-relatedTarget"><span class="nav-number">4.1.4.</span> <span class="nav-text">Event.relatedTarget</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-vs-Element"><span class="nav-number">4.2.</span> <span class="nav-text">Node vs Element</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Node："><span class="nav-number">4.2.1.</span> <span class="nav-text">Node：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Element："><span class="nav-number">4.2.2.</span> <span class="nav-text">Element：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EamonnZhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
